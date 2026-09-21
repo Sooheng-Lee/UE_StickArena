@@ -1,0 +1,25 @@
+# Unreal Engine generated files
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# IDE generated files
+.vs/
+.vscode/
+.idea/
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+
+# Local build and editor files
+*.log
+*.tmp
+*.swp
+
+# OS metadata
+.DS_Store
+Thumbs.db
