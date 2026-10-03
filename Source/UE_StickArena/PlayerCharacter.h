@@ -49,10 +49,10 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> attackInputAction;
 	UPROPERTY(EditAnywhere)
-	EWeaponType WeaponType = EWeaponType::SWORD;
-
+	EWeaponType WeaponType = EWeaponType::NONE;
 	EPlayerState playerState;
-
+	UPROPERTY()
+	class AWeaponActor* WeaponActor = nullptr;
 private:
 	FVector forwardVector;
 	FVector rightVector;

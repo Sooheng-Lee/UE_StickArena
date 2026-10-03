@@ -101,10 +101,6 @@ void UPlayerAnimInstance::AnimNotify_HitboxOn()
 	}
 }
 
-void UPlayerAnimInstance::AnimNotify_HitboxOff()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Hitbox Off"));
-}
 
 void UPlayerAnimInstance::AnimNotify_EnableInput()
 {

@@ -2,6 +2,7 @@
 
 
 #include "PlayerCharacter.h"
+#include "WeaponActor.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
