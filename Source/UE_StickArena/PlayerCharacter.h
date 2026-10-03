@@ -10,6 +10,8 @@
 #include "InputAction.h"
 #include "PlayerCharacter.generated.h"
 
+class AWeaponActor;
+
 UCLASS()
 class UE_STICKARENA_API APlayerCharacter : public ACharacter
 {
@@ -32,6 +34,12 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	EWeaponType GetWeponType() const { return WeaponType; };
 
+	UFUNCTION(BlueprintPure, Category = "Weapon")
+	AWeaponActor* GetWeaponActor() const { return WeaponActor; }
+
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+	void SetWeaponActor(AWeaponActor* NewWeaponActor) { WeaponActor = NewWeaponActor; }
+
 private:
 	void RotateToMouse(float DeltaTime);
 	void MovePlayer(const FInputActionInstance& instance);
@@ -51,7 +59,7 @@ protected:
 	UPROPERTY(EditAnywhere)
 	EWeaponType WeaponType = EWeaponType::NONE;
 	EPlayerState playerState;
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Category = "Weapon")
 	class AWeaponActor* WeaponActor = nullptr;
 private:
 	FVector forwardVector;

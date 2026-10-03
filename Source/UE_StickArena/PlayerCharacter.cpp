@@ -3,6 +3,7 @@
 
 #include "PlayerCharacter.h"
 #include "WeaponActor.h"
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
@@ -11,6 +12,8 @@
 // Sets default values
 APlayerCharacter::APlayerCharacter()
 {
+	GetCapsuleComponent()->SetCollisionProfileName(TEXT("Character"));
+	GetCapsuleComponent()->SetGenerateOverlapEvents(true);
 	springArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Arm"));
 	springArm->SetupAttachment(RootComponent);
 	springArm->bUsePawnControlRotation = false;
@@ -53,6 +56,8 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	GetCapsuleComponent()->SetCollisionProfileName(TEXT("Character"));
+	GetCapsuleComponent()->SetGenerateOverlapEvents(true);
 	APlayerController* controller = Cast<APlayerController>(GetController());
 	if (!controller) return;
 	FInputModeGameAndUI inputMode;
