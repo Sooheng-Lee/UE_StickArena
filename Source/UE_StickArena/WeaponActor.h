@@ -29,7 +29,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "WeaponInfo")
 	void SetWeaponState(EWeaponState NewState);
 
-	EWeaponType GetWeponType() { return WeaponType; }
+	EWeaponType GetWeaponType() { return WeaponType; }
 	float GetDamage() { return Damage; }
 	float GetMoveSpeed() { return MoveSpeed; }
 

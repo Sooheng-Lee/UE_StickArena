@@ -157,14 +157,12 @@ void AWeaponActor::SetWeaponState(EWeaponState NewState)
 void AWeaponActor::OnTriggerBoxBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (WeaponState != EWeaponState::UNEQUIPED)
-	{
-		return;
-	}
+	if (WeaponState != EWeaponState::UNEQUIPED) return;
 
 	if (APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor))
 	{
 		UE_LOG(LogTemp, Display, TEXT("Equipped"));
+		SetWeaponState(EWeaponState::EQUIPED);
 		PlayerCharacter->SetWeaponActor(this);
 
 	}

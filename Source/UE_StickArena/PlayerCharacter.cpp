@@ -118,6 +118,13 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	}
 }
 
+void APlayerCharacter::SetWeaponActor(AWeaponActor* NewWeaponActor)
+{
+	this->WeaponActor = NewWeaponActor;
+	const FName SocketName = TEXT("WeaponSocket");
+	WeaponActor->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, SocketName);
+}
+
 void APlayerCharacter::RotateToMouse(float DeltaTime)
 {
 	APlayerController* controller = Cast<APlayerController>(GetController());
@@ -205,13 +212,14 @@ void APlayerCharacter::Attack(const FInputActionInstance& instance)
 		break;
 	}
 
-	switch (WeaponType)
-	{
-	case EWeaponType::NONE:
+	if (WeaponActor == nullptr) {
 		animInstance->PlayPunchAttack();
-		break;
-	case EWeaponType::SWORD:
-		animInstance->PlaySwordAttack();
-		break;
+		return;
+	}
+	else{
+		if (WeaponActor->GetWeaponType() == EWeaponType::SWORD) {
+			animInstance->PlaySwordAttack();
+			return;
+		}
 	}
 }

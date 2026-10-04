@@ -32,13 +32,11 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	EWeaponType GetWeponType() const { return WeaponType; };
-
+	
 	UFUNCTION(BlueprintPure, Category = "Weapon")
 	AWeaponActor* GetWeaponActor() const { return WeaponActor; }
-
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
-	void SetWeaponActor(AWeaponActor* NewWeaponActor) { WeaponActor = NewWeaponActor; }
+	void SetWeaponActor(AWeaponActor* NewWeaponActor);
 
 private:
 	void RotateToMouse(float DeltaTime);
@@ -56,8 +54,6 @@ protected:
 	TObjectPtr<UInputAction> moveInputAction;
 	UPROPERTY(BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> attackInputAction;
-	UPROPERTY(EditAnywhere)
-	EWeaponType WeaponType = EWeaponType::NONE;
 	EPlayerState playerState;
 	UPROPERTY(BlueprintReadOnly, Category = "Weapon")
 	class AWeaponActor* WeaponActor = nullptr;
